@@ -1,0 +1,14 @@
+version: "3"
+ 
+
+services:
+       eri_spark:
+                     build: .
+                     image: eri_spark  
+                     tty: true
+                     container_name: eri_spark_container     
+                     ports:
+                            - "8888:8888"         
+                     volumes:
+                            - ".:/application"
+                     command: bash -c "/usr/local/bin/start.sh run-one-constantly jupyter notebook --notebook-dir='/application/application' --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''  "$$@""
